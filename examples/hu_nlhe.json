@@ -1,0 +1,18 @@
+{
+  "positions": ["BTN", "BB"],
+  "starting_stack": 100,
+  "blind_structure": {
+    "small_blind": 0.5,
+    "big_blind": 1.0
+  },
+  "ranges": {
+    "BTN": "22+,A2s+,K7s+,Q9s+,J9s+,T8s+,97s+,87s,A8o+,KTo+,QTo+,JTo",
+    "BB": "22+,A2s+,K2s+,Q6s+,J7s+,T7s+,96s+,86s+,76s,A2o+,K8o+,Q9o+,J9o+,T9o"
+  },
+  "actions": {
+    "preflop": ["fold", "call", "bet:2.5", "all-in"],
+    "flop": ["check", "fold", "call", "bet:0.25", "bet:0.75", "all-in"],
+    "turn": ["check", "fold", "call", "bet:0.5", "bet:1.0", "all-in"],
+    "river": ["check", "fold", "call", "bet:0.75", "bet:1.5", "all-in"]
+  }
+}
