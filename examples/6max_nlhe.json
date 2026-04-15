@@ -1,13 +1,17 @@
 {
-  "max_players": 2,
-  "positions": ["BTN", "BB"],
+  "max_players": 6,
+  "positions": ["UTG", "HJ", "CO", "BTN", "SB", "BB"],
   "starting_stack": 100,
   "blind_structure": {
     "small_blind": 0.5,
     "big_blind": 1.0
   },
   "ranges": {
-    "BTN": "22+,A2s+,K7s+,Q9s+,J9s+,T8s+,97s+,87s,A8o+,KTo+,QTo+,JTo",
+    "UTG": "66+,ATs+,KQs,AQo+",
+    "HJ": "55+,A9s+,KTs+,QTs+,JTs,ATo+,KQo",
+    "CO": "44+,A7s+,K9s+,Q9s+,J9s+,T9s,98s,A9o+,KTo+,QJo",
+    "BTN": "22+,A2s+,K5s+,Q7s+,J7s+,T7s+,97s+,86s+,75s+,65s,A2o+,K8o+,Q9o+,J9o+,T9o",
+    "SB": "22+,A2s+,K7s+,Q8s+,J8s+,T8s+,97s+,87s,A7o+,KTo+,QTo+,JTo",
     "BB": "22+,A2s+,K2s+,Q6s+,J7s+,T7s+,96s+,86s+,76s,A2o+,K8o+,Q9o+,J9o+,T9o"
   },
   "actions": {

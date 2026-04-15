@@ -78,7 +78,11 @@ def eval_7(cards: Sequence[str]) -> Tuple[int, List[int]]:
     return best
 
 
+def hand_rank(two_cards: Sequence[str], board: Sequence[str]) -> Tuple[int, List[int]]:
+    return eval_7(list(two_cards) + list(board))
+
+
 def compare_hands(hero_two: Sequence[str], vill_two: Sequence[str], board: Sequence[str]) -> int:
-    hero = eval_7(list(hero_two) + list(board))
-    vill = eval_7(list(vill_two) + list(board))
+    hero = hand_rank(hero_two, board)
+    vill = hand_rank(vill_two, board)
     return (hero > vill) - (hero < vill)

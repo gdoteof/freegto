@@ -11,6 +11,7 @@ STREETS = ("preflop", "flop", "turn", "river")
 @dataclass(frozen=True)
 class GameConfig:
     positions: List[str]
+    max_players: int
     starting_stack: float
     small_blind: float
     big_blind: float
@@ -23,8 +24,19 @@ def load_config(path: str | Path) -> GameConfig:
         raw = json.load(f)
 
     positions = raw["positions"]
-    if len(positions) != 2:
-        raise ValueError("Current prototype supports exactly 2 positions (heads-up).")
+    max_players = int(raw.get("max_players", len(positions)))
+    if max_players not in {2, 6, 9}:
+        raise ValueError("Supported max_players values are 2, 6, or 9.")
+    if len(positions) != max_players:
+        raise ValueError("The number of configured positions must match max_players.")
+    if max_players < len(positions):
+        raise ValueError("max_players cannot be smaller than the number of configured positions.")
+    if len(set(positions)) != len(positions):
+        raise ValueError("Position names must be unique.")
+    if "BTN" not in positions or "BB" not in positions:
+        raise ValueError("Positions must include BTN and BB.")
+    if max_players > 2 and "SB" not in positions:
+        raise ValueError("Multi-player tables must include SB.")
 
     for s in STREETS:
         if s not in raw["actions"]:
@@ -36,6 +48,7 @@ def load_config(path: str | Path) -> GameConfig:
 
     return GameConfig(
         positions=positions,
+        max_players=max_players,
         starting_stack=float(raw.get("starting_stack", 100.0)),
         small_blind=float(raw["blind_structure"]["small_blind"]),
         big_blind=float(raw["blind_structure"]["big_blind"]),
